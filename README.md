@@ -19,7 +19,6 @@ Work in progress.
 git clone --recurse-submodules <repo-url>
 cd pccl
 uv sync
-uv pip install -e third_party/astra-sim/extern/graph_frontend/chakra
 ```
 
 Build the ASTRA-sim analytical backend:
@@ -28,12 +27,24 @@ Build the ASTRA-sim analytical backend:
 PROTOBUF_FROM_SOURCE=True ./third_party/astra-sim/build/astra_analytical/build.sh
 ```
 
+### Chakra bindings
+
+The Chakra execution-trace bindings (`src/pccl/proto/et_def_pb2.py`) are generated from the pinned submodule and committed, so no Chakra install is needed. To regenerate after updating ASTRA-sim:
+
+```bash
+protoc --proto_path=third_party/astra-sim/extern/graph_frontend/chakra/schema/protobuf \
+       --python_out=src/pccl/proto et_def.proto
+```
+
+The generated code requires a protobuf runtime matching the `protoc` version used (currently 33.x, i.e. `protobuf>=6.33,<7`).
+
 ## Layout
 
 ```
 src/pccl/       synthesizer: topology, collectives, routing, schedule, emitters
+src/pccl/proto/ generated Chakra ET protobuf bindings
 baselines/      reference algorithms (e.g. Direct All-to-All)
-config/        topology and experiment definitions
+config/         topology and experiment definitions
 experiments/    scripts that reproduce individual figures
 tests/          schedule validation tests
 third_party/    ASTRA-sim (pinned submodule)
