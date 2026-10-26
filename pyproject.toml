@@ -1,0 +1,27 @@
+[project]
+name = "pccl"
+version = "0.1.0"
+description = "A faithful reproduction of PCCl, https://arxiv.org/html/2606.07019v1."
+readme = "README.md"
+authors = [
+    { name = "Satvik Prasad", email = "satvikprasad@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "networkx>=3.7",
+    "numpy>=2.5.4",
+    "pandas>=3.1.0",
+    "protobuf>=6.33,<7",
+    "pyyaml>=6.0.3",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.3,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.2",
+]
