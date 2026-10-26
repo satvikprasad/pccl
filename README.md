@@ -33,7 +33,7 @@ PROTOBUF_FROM_SOURCE=True ./third_party/astra-sim/build/astra_analytical/build.s
 ```
 src/pccl/       synthesizer: topology, collectives, routing, schedule, emitters
 baselines/      reference algorithms (e.g. Direct All-to-All)
-configs/        topology and experiment definitions
+config/        topology and experiment definitions
 experiments/    scripts that reproduce individual figures
 tests/          schedule validation tests
 third_party/    ASTRA-sim (pinned submodule)
